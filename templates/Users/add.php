@@ -5,24 +5,20 @@
  */
 ?>
 <div class="row">
-    <aside class="column">
-        <div class="side-nav">
-            <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(__('List Users'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
-        </div>
-    </aside>
-    <div class="column-responsive column-80">
-        <div class="users form content">
+        <div class="column users form content">
             <?= $this->Form->create($user) ?>
             <fieldset>
                 <legend><?= __('Add User') ?></legend>
                 <?php
                     echo $this->Form->control('username');
                     echo $this->Form->control('password');
+                    echo $this->Form->control('password_repeat', ['label' => 'Repeat Password', 'type' => 'password']);
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>
             <?= $this->Form->end() ?>
+
+            <?= $this->Html->link(__('Login'), ['action' => 'login'], ['class' => 'side-nav-item']) ?>
+
         </div>
-    </div>
 </div>

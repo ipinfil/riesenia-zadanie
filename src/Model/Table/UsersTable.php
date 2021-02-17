@@ -63,13 +63,18 @@ class UsersTable extends Table
             ->maxLength('username', 255)
             ->requirePresence('username', 'create')
             ->notEmptyString('username')
-            ->add('username', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
+            ->add('username', 'unique', ['rule' => 'validateUnique', 'provider' => 'table', 'message' => 'This username is already used.']);
 
         $validator
             ->scalar('password')
-            ->maxLength('password', 255)
             ->requirePresence('password', 'create')
-            ->notEmptyString('password');
+            ->notEmptyString('password')
+            ->lengthBetween('password', array(8,255), 'Password is too short.')
+            ->regex('password', '/(.*)([A-Z]+)(.*)([0-9]+)(.*)|(.*)([0-9]+)(.*)([A-Z]+)(.*)/', 'Password must contain number and uppercase letter!');
+
+        $validator
+            ->requirePresence('password_repeat', 'create')
+            ->equalToField('password_repeat', 'password', 'Does not equal the passport.');
 
         return $validator;
     }
