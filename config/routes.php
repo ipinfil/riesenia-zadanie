@@ -70,6 +70,16 @@ $routes->scope('/', function (RouteBuilder $builder) {
      * You can remove these routes once you've connected the
      * routes you want in your application.
      */
+
+    $builder->scope('/images', function (RouteBuilder $builder) {
+        $builder->connect('/size/{width}/{height}', ['controller' => 'Images', 'action' => 'filter'])
+                ->setPass(['width', 'height'])
+                ->setPatterns([
+                    'width' => '[0-9]+',
+                    'height' => '[0-9]+',
+                ]);
+    });
+
     $builder->fallbacks();
 });
 
