@@ -43,4 +43,4 @@ nbproject/*
 .sass-cache/
 
 # PHP-CS-FIXER Config
-.php_sc
+.php_cs
