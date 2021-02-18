@@ -5,3 +5,12 @@ CREATE TABLE users (
     created TIMESTAMP,
     modified TIMESTAMP
 );
+
+CREATE TABLE images (
+	id SERIAL PRIMARY KEY,
+	path VARCHAR(300) NOT NULL UNIQUE,
+	height INTEGER NOT NULL,
+	width INTEGER NOT NULL,
+	created TIMESTAMP,
+    modified TIMESTAMP
+);
