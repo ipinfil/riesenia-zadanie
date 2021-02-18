@@ -1,17 +1,17 @@
 <?php
-declare(strict_types=1);
 
+declare(strict_types=1);
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
 
 /**
- * Image Entity
+ * Image Entity.
  *
- * @property int $id
- * @property string $path
- * @property int $height
- * @property int $width
+ * @property int                        $id
+ * @property string                     $path
+ * @property int                        $height
+ * @property int                        $width
  * @property \Cake\I18n\FrozenTime|null $created
  * @property \Cake\I18n\FrozenTime|null $modified
  */
