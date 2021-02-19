@@ -24,8 +24,8 @@
                 <tr>
                     <th><?= $this->Paginator->sort('id'); ?></th>
                     <th><?= $this->Paginator->sort('path'); ?></th>
-                    <th><?= $this->Paginator->sort('height'); ?></th>
                     <th><?= $this->Paginator->sort('width'); ?></th>
+                    <th><?= $this->Paginator->sort('height'); ?></th>
                     <th><?= $this->Paginator->sort('created'); ?></th>
                     <th><?= $this->Paginator->sort('modified'); ?></th>
                     <th class="actions"><?= __('Actions'); ?></th>

@@ -110,13 +110,13 @@ class ImagesController extends AppController
 
         if ($this->request->is('post')) {
             $image = $this->Images->patchEntity($image, $this->request->getData());
-            $height = $this->request->getData('height');
-            $width = $this->request->getData('width');
+            $height = (int) $this->request->getData('height');
+            $width = (int) $this->request->getData('width');
 
             if (!$image->getErrors()) {
                 $file = $this->request->getData('image');
-                $top = $this->request->getData('top');
-                $left = $this->request->getData('left');
+                $top = (int) $this->request->getData('top');
+                $left = (int) $this->request->getData('left');
 
                 $img_validator = new Validation();
                 $minHeight = $top + $height;
@@ -126,7 +126,8 @@ class ImagesController extends AppController
                 $widthOk = $img_validator->imageWidth($file, '>=', $minWidth);
 
                 if ($heightOk && $widthOk) {
-                    $this->cropImage($file, $top, $left, $image);
+                    $path = $this->cropImage($file, $top, $left, $width, $height);
+                    $image->path = $path;
 
                     if ($this->Images->save($image)) {
                         $this->Flash->success(__('The image has been saved.'));
@@ -166,7 +167,7 @@ class ImagesController extends AppController
         return $this->redirect(['action' => 'index']);
     }
 
-    private function cropImage($file, $top, $left, $imageEntity)
+    private function cropImage($file, int $top, int $left, int $width, int $height): string
     {
         $fileName = $file->getClientFilename();
         $mediaType = $file->getClientMediaType();
@@ -183,8 +184,8 @@ class ImagesController extends AppController
         $croppedimg = imagecrop($img, [
             'x' => $left,
             'y' => $top,
-            'width' => $imageEntity->width,
-            'height' => $imageEntity->height,
+            'width' => $width,
+            'height' => $height,
         ]);
 
         if ($croppedimg) {
@@ -193,7 +194,10 @@ class ImagesController extends AppController
             } else {
                 imagejpeg($croppedimg, $path);
             }
-            $imageEntity->path = $relativePath;
+
+            return $relativePath;
+        } else {
+            return null;
         }
     }
 }
