@@ -167,7 +167,7 @@ class ImagesController extends AppController
         return $this->redirect(['action' => 'index']);
     }
 
-    private function cropImage($file, int $top, int $left, int $width, int $height): string
+    private function cropImage($file, int $top, int $left, int $width, int $height): ?string
     {
         $fileName = $file->getClientFilename();
         $mediaType = $file->getClientMediaType();
