@@ -8,4 +8,5 @@
 4. Spustenie [create_scriptu](create_script.sql) v databáze.
 5. Spustenie CakePHP servera `bin/cake server`
 
+*Pripravený [create_script](create_script.sql) je vytvorený pre Postgres databázu a podobne pripravená konfigurácia databázy v [app_local.example.php](config/app_local.example.php) je pre Postgres.*
 
