@@ -19,7 +19,6 @@ class ImagesController extends AppController
     public function initialize(): void
     {
         parent::initialize();
-        $this->Authentication->allowUnauthenticated(['index', 'view', 'add', 'edit', 'delete', 'filter']);
     }
 
     public function filter($width, $height)
