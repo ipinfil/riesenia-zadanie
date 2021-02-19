@@ -19,16 +19,11 @@ class ImagesController extends AppController
     public function initialize(): void
     {
         parent::initialize();
+        $this->loadComponent('Paginator');
     }
 
     public function filter($width, $height)
     {
-        $images = $this->Images->
-            find('sized', [
-                'width' => $width,
-                'height' => $height,
-            ])->all();
-
         $search = new SearchForm();
 
         if ($this->request->is('post')) {
@@ -46,7 +41,16 @@ class ImagesController extends AppController
             }
         }
 
+        $query = $this->Images->
+            find('sized', [
+                'width' => $width,
+                'height' => $height,
+            ]);
+
+        $images = $this->paginate($query);
+
         $this->set(compact('images'))->set(compact('search'));
+        $this->render('/images/index');
     }
 
     /**

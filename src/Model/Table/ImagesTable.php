@@ -124,6 +124,6 @@ class ImagesTable extends Table
             ->where(['width' => $options['width']])
             ->andWhere(['height' => $options['height']]);
 
-        return $query->group(['id']);
+        return $query;
     }
 }
