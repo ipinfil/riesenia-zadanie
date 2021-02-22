@@ -42,7 +42,6 @@
                     <td><?= h($image->modified); ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $image->id]); ?>
-                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $image->id]); ?>
                         <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $image->id], ['confirm' => __('Are you sure you want to delete # {0}?', $image->id)]); ?>
                     </td>
                 </tr>
