@@ -157,8 +157,11 @@ class ImagesController extends AppController
     {
         $this->request->allowMethod(['post', 'delete']);
         $image = $this->Images->get($id);
+        $relativePath = $image->path;
 
         if ($this->Images->delete($image)) {
+            $path = WWW_ROOT . $relativePath;
+            unlink($path);
             $this->Flash->success(__('The image has been deleted.'));
         } else {
             $this->Flash->error(__('The image could not be deleted. Please, try again.'));
