@@ -20,9 +20,4 @@ class SearchForm extends Form
     {
         return $schema->addField('search', 'string');
     }
-
-    protected function _execute(array $data): bool
-    {
-        return true;
-    }
 }
